@@ -1,6 +1,10 @@
 "use client"
 import Nav from "./component/Nav"
+import { useLang } from "./i18n/LanguageProvider"
+import { dict } from "./i18n/dictionaries"
 export default function Home() {
+  const { lang } = useLang()
+  const t = dict[lang]
   return (
     <div className="flex flex-col min-h-screen">
       <Nav /> {/* Navbar */}
@@ -8,22 +12,17 @@ export default function Home() {
       {/* Hero Section */}
       <section className="container mx-auto px-4 text-center py-12">
         <h1 className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold mb-6">
-          บริการ เช่ารถ พร้อมคนขับมืออาชีพ
+          {t.hero.title}
         </h1>
         <p className="text-base md:text-lg leading-relaxed text-gray-700 max-w-2xl mx-auto">
-          เราเป็น <span className="font-semibold text-indigo-600">ผู้นำด้านการเช่ารถพร้อมคนขับ</span> 
-          ที่มีประสบการณ์และความเชี่ยวชาญ ที่นี่เราให้บริการ 
-          <span className="font-semibold text-indigo-600">เช่ารถตู้ VIP</span> 
-          พร้อมคนขับที่เชี่ยวชาญทุกเส้นทาง เพื่อความสะดวกสบายและ 
-          <span className="font-semibold text-green-600">ปลอดภัย</span> 
-          ในการเดินทางของคุณ
+          {t.hero.description}
         </p>
         <div className="mt-6 flex justify-center gap-4">
           <a
             href="tel:0623385663"
             className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl shadow hover:bg-blue-700 transition"
           >
-            📞 โทรเลย
+            {t.hero.call}
           </a>
           <a
             href="https://line.me/R/ti/p/@435litlk" // <-- แก้เป็น LINE ID ของคุณ
@@ -31,67 +30,67 @@ export default function Home() {
             rel="noopener noreferrer"
             className="px-6 py-3 bg-green-500 text-white font-semibold rounded-xl shadow hover:bg-green-600 transition"
           >
-            💬 ติดต่อเราใน LINE
+            {t.hero.line}
         </a>
         </div>
       </section>
 
       {/* จุดเด่น */}
       <section className="container mx-auto px-4 py-12">
-        <h2 className="text-2xl font-bold text-center mb-8">ทำไมต้องเลือกเรา?</h2>
+        <h2 className="text-2xl font-bold text-center mb-8">{t.benefits.title}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
           <div className="p-6 bg-white rounded-xl shadow">
             <div className="text-3xl mb-2">👨‍✈️</div>
-            <h3 className="font-bold text-lg">มืออาชีพ</h3>
-            <p className="text-gray-600">ทีมงานคนขับมีประสบการณ์ และผ่านการอบรม</p>
+            <h3 className="font-bold text-lg">{t.benefits.items[0].title}</h3>
+            <p className="text-gray-600">{t.benefits.items[0].desc}</p>
           </div>
           <div className="p-6 bg-white rounded-xl shadow">
             <div className="text-3xl mb-2">🛡️</div>
-            <h3 className="font-bold text-lg">ปลอดภัย</h3>
-            <p className="text-gray-600">รถตรวจเช็คสภาพประจำ และมีประกัน</p>
+            <h3 className="font-bold text-lg">{t.benefits.items[1].title}</h3>
+            <p className="text-gray-600">{t.benefits.items[1].desc}</p>
           </div>
           <div className="p-6 bg-white rounded-xl shadow">
             <div className="text-3xl mb-2">💺</div>
-            <h3 className="font-bold text-lg">สะดวกสบาย</h3>
-            <p className="text-gray-600">รถตู้ VIP เบาะกว้าง แอร์เย็นสบาย</p>
+            <h3 className="font-bold text-lg">{t.benefits.items[2].title}</h3>
+            <p className="text-gray-600">{t.benefits.items[2].desc}</p>
           </div>
         </div>
       </section>
 
       {/* แพ็กเกจและราคา */}
       <section className="container mx-auto px-4 py-12">
-        <h2 className="text-2xl font-bold text-center mb-8">ราคาเริ่มต้นของเรา</h2>
+        <h2 className="text-2xl font-bold text-center mb-8">{t.pricing.title}</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Basic Plan */}
           <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition text-center">
-            <h3 className="text-xl font-semibold mb-4">เช่ารถตู้รายวัน</h3>
-            <p className="text-gray-600 mb-4">พร้อมคนขับมืออาชีพ</p>
-            <p className="text-3xl font-bold text-indigo-600 mb-4">เริ่มต้น 2,000฿ / วัน</p>
-            <p className="text-gray-600 mb-4">**เฉพาะกรุงเทพเเละปริมณฑล**</p>
+            <h3 className="text-xl font-semibold mb-4">{t.pricing.daily.title}</h3>
+            <p className="text-gray-600 mb-4">{t.pricing.daily.desc}</p>
+            <p className="text-3xl font-bold text-indigo-600 mb-4">{t.pricing.daily.price1}</p>
+            <p className="text-gray-600 mb-4">{t.pricing.daily.note1}</p>
             <a
               href="https://line.me/R/ti/p/@435litlk"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 bg-green-500 text-white rounded-xl font-semibold shadow hover:bg-green-600 transition"
             >
-              💬 ติดต่อเรา
+              {t.pricing.contact}
             </a>
           </div>
 
           {/* Standard Plan */}
           <div className="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition text-center">
-            <h3 className="text-xl font-semibold mb-4">เช่ารถตู้รายวัน</h3>
-            <p className="text-gray-600 mb-4">พร้อมคนขับมืออาชีพ</p>
-            <p className="text-3xl font-bold text-indigo-600 mb-4">เริ่มต้น 2,500฿ / วัน</p>
-            <p className="text-gray-600 mb-4">**ออกต่างจังหวัดหรือระยะทาง 300 กิโลเมตรขึ้นไป**</p>
+            <h3 className="text-xl font-semibold mb-4">{t.pricing.daily2.title}</h3>
+            <p className="text-gray-600 mb-4">{t.pricing.daily2.desc}</p>
+            <p className="text-3xl font-bold text-indigo-600 mb-4">{t.pricing.daily2.price1}</p>
+            <p className="text-gray-600 mb-4">{t.pricing.daily2.note1}</p>
             <a
               href="https://line.me/R/ti/p/@435litlk"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 bg-green-500 text-white rounded-xl font-semibold shadow hover:bg-green-600 transition"
             >
-              💬 ติดต่อเรา
+              {t.pricing.contact}
             </a>
           </div>
         </div>
@@ -167,28 +166,26 @@ export default function Home() {
           {/* เงื่อนไขในการใช้บริการ */}
       <section className="container mx-auto px-4 py-12">
           <div className="mt-12 max-w-3xl mx-auto bg-gray-50 rounded-2xl shadow p-6">
-            <h3 className="text-xl font-semibold text-gray-700 mb-4 text-center">
-              รายละเอียดการใช้บริการ
-            </h3>
+            <h3 className="text-xl font-semibold text-gray-700 mb-4 text-center">{t.conditions.title}</h3>
             <ul className="list-decimal list-inside space-y-2 text-gray-600 text-left">
-              <li>ผู้โดยสารควรจองล่วงหน้าอย่างน้อย 1 วัน</li>
-              <li>การยกเลิกต้องแจ้งล่วงหน้าอย่างน้อย 12 ชั่วโมง</li>
-              <li>ราคาอาจมีการเปลี่ยนแปลงตามระยะทางและเงื่อนไขเพิ่มเติม</li>
-              <li>ค่าใช้จ่ายอื่น ๆ เช่น ค่าทางด่วน และค่าที่จอดรถ ลูกค้าเป็นผู้รับผิดชอบ</li>
+              <li>{t.conditions.items[0]}</li>
+              <li>{t.conditions.items[1]}</li>
+              <li>{t.conditions.items[2]}</li>
+              <li>{t.conditions.items[3]}</li>
             </ul>
           </div>
       </section>
 
       {/* รีวิวลูกค้า */}
       <section className="container mx-auto px-4 py-12">
-        <h2 className="text-2xl font-bold text-center mb-8">ผลงานที่ผ่านมา</h2>
+        <h2 className="text-2xl font-bold text-center mb-8">{t.reviews.title}</h2>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {Array.from({ length: 24 }, (_, i) => (
             <img
               key={i}
               src={`/customer/customer${i + 1}.jpg`} // เรียกจาก public
-              alt={`ลูกค้า ${i + 1}`}
+              alt={t.reviews.imgAlt(i + 1)}
               className="w-full h-full object-cover rounded-lg"
             />
           ))}

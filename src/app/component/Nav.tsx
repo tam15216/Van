@@ -1,7 +1,12 @@
+"use client"
 import React from 'react'
 import Link from "next/link"
+import { useLang } from "../i18n/LanguageProvider"
+import { dict } from "../i18n/dictionaries"
 
 export default function Nav() {
+  const { lang, setLang } = useLang()
+  const t = dict[lang]
   return (
     <nav className="container mx-auto flex flex-wrap items-center justify-between p-4">
       {/* Logo */}
@@ -10,13 +15,13 @@ export default function Nav() {
       </h1>
 
       {/* Links */}
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap items-center gap-4">
         <span className='group'>
           <Link
             href="/"
             className="relative text-gray-700 font-medium hover:text-blue-600 transition-colors duration-300"
           >
-            Home
+            {t.nav.home}
             <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
           </Link>
         </span>
@@ -26,7 +31,7 @@ export default function Nav() {
             href="/about"
             className="relative text-gray-700 font-medium hover:text-blue-600 transition-colors duration-300"
           >
-            Top attractions
+            {t.nav.attractions}
             <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
           </Link>
         </span>
@@ -36,10 +41,18 @@ export default function Nav() {
             href="/contact"
             className="relative text-gray-700 font-medium hover:text-blue-600 transition-colors duration-300"
           >
-            Contact
+            {t.nav.contact}
             <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
           </Link>
         </span>
+
+        <button
+          onClick={() => setLang(lang === "th" ? "en" : "th")}
+          className="px-2 py-1 border rounded-md text-sm text-gray-700 hover:bg-gray-100"
+          aria-label="Toggle language"
+        >
+          {lang === "th" ? "EN" : "TH"}
+        </button>
       </div>
     </nav>
   )

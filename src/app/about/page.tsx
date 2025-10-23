@@ -1,5 +1,8 @@
+"use client"
 import Nav from "../component/Nav";
-const attractions = [
+import { useLang } from "../i18n/LanguageProvider";
+import { dict } from "../i18n/dictionaries";
+const attractionsTH = [
   {
     name: "ดอยอินทนนท์",
     img: "/arttraction/attraction1.jpg",
@@ -38,18 +41,55 @@ const attractions = [
   },
   // เพิ่มข้อมูลสถานที่อื่น ๆ ...
 ];
+const attractionsEN = [
+  {
+    name: "Doi Inthanon",
+    img: "/arttraction/attraction1.jpg",
+    shortDesc: "Thailand’s highest peak with easy day trips: pagodas, viewpoints, rice terraces, and waterfalls.",
+    approxCarPrice: "Van rental approx. 1,200฿ / day",
+  },
+  {
+    name: "Koh Larn",
+    img: "/arttraction/attraction2.jpg",
+    shortDesc: "A quick island getaway near Bangkok with crystal-clear waters, snorkeling, squid fishing, and jet skis.",
+    approxCarPrice: "Van rental approx. 800฿ / day",
+  },
+  {
+    name: "Samet Nangshe",
+    img: "/arttraction/attraction3.jpg",
+    shortDesc: "Famed sunrise viewpoint in Phang Nga with stunning karst landscapes—one of Thailand’s most beautiful.",
+    approxCarPrice: "Van rental approx. 1,000฿ / day",
+  },
+  {
+    name: "Bridge over the River Kwai",
+    img: "/arttraction/attraction4.jpg",
+    shortDesc: "Historic WWII railway bridge in Kanchanaburi spanning ~300m, part of the 415km Death Railway.",
+    approxCarPrice: "Van rental approx. 1,000฿ / day",
+  },
+  {
+    name: "Khao Kho",
+    img: "/arttraction/attraction5.jpg",
+    shortDesc: "Popular mountain escape with fresh air and cool mornings; visit temples, wind farms, and memorials.",
+    approxCarPrice: "Van rental approx. 1,000฿ / day",
+  },
+  {
+    name: "Phu Soi Dao",
+    img: "/arttraction/attraction6.jpg",
+    shortDesc: "Nature lover’s favorite with vast forests and purple flowers; great for stargazing and the Milky Way.",
+    approxCarPrice: "Van rental approx. 1,000฿ / day",
+  },
+];
 
 export default function Attractions() {
+  const { lang } = useLang()
+  const t = dict[lang]
+  const attractions = lang === "th" ? attractionsTH : attractionsEN
   return (
     <div className="flex flex-col items-center text-center flex-1 min-h-screen">
       <Nav />
-      <h1 className="py-6 text-3xl font-bold">สถานที่ท่องเที่ยวยอดนิยม</h1>
-      <p className="text-gray-700 mb-2 max-w-2xl px-4">
-        เราแนะนำสถานที่ท่องเที่ยวที่น่าสนใจ พร้อมค่าเดินทางโดยรถตู้แบบคร่าว ๆ
-      </p>
-      <p className="text-gray-500 text-sm mb-8 max-w-2xl px-4">
-        *ราคาประมาณการเช่ารถตู้จากกรุงเทพมหานคร ไปยังสถานที่ดังกล่าว
-      </p>
+      <h1 className="py-6 text-3xl font-bold">{t.about.title}</h1>
+      <p className="text-gray-700 mb-2 max-w-2xl px-4">{t.about.desc}</p>
+      <p className="text-gray-500 text-sm mb-8 max-w-2xl px-4">{t.about.note}</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4 max-w-6xl">
         {attractions.map((place, i) => (
@@ -70,7 +110,7 @@ export default function Attractions() {
               rel="noopener noreferrer"
               className="px-4 py-2 bg-green-500 text-white rounded-xl font-semibold shadow hover:bg-green-600 transition mt-3"
             >
-              💬 ติดต่อเรา
+              {t.about.contact}
             </a>
           </div>
         ))}

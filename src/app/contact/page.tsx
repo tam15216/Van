@@ -1,6 +1,11 @@
+"use client"
 import Nav from "../component/Nav" 
+import { useLang } from "../i18n/LanguageProvider"
+import { dict } from "../i18n/dictionaries"
 
 export default function Contact() {
+  const { lang } = useLang()
+  const t = dict[lang]
   return (
     <div className="min-h-screen ">
       <Nav />
@@ -8,19 +13,15 @@ export default function Contact() {
       {/* Hero Section */}
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-800 mb-4">
-            📞 ติดต่อเรา
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            เราพร้อมให้บริการและตอบคำถามทุกข้อสงสัยของคุณ
-          </p>
+          <h1 className="text-5xl font-bold text-gray-800 mb-4">{t.contact.title}</h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">{t.contact.subtitle}</p>
         </div>
         <div className="max-w-4xl mx-auto">
           {/* Contact Information */}
           <div className="space-y-8">
             {/* Contact Cards */}
             <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h2 className="text-2xl font-bold text-gray-800 mb-6">ข้อมูลการติดต่อ</h2>
+              <h2 className="text-2xl font-bold text-gray-800 mb-6">{t.contact.infoTitle}</h2>
               
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
@@ -28,10 +29,10 @@ export default function Contact() {
                     <span className="text-2xl">📍</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-800">ที่อยู่</h3>
+                    <h3 className="font-semibold text-gray-800">{t.contact.addressTitle}</h3>
                     <p className="text-gray-600">
-                      123 ถนนสุขุมวิท<br />
-                      เขตวัฒนา กรุงเทพฯ 10110
+                      {t.contact.address1}<br />
+                      {t.contact.address2}
                     </p>
                   </div>
                 </div>
@@ -41,7 +42,7 @@ export default function Contact() {
                     <span className="text-2xl">📞</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-800">โทรศัพท์</h3>
+                    <h3 className="font-semibold text-gray-800">{t.contact.phoneTitle}</h3>
                     <p className="text-gray-600">02-123-4567</p>
                     <p className="text-gray-600">081-234-5678</p>
                   </div>
@@ -52,7 +53,7 @@ export default function Contact() {
                     <span className="text-2xl">✉️</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-800">อีเมล</h3>
+                    <h3 className="font-semibold text-gray-800">{t.contact.emailTitle}</h3>
                     <p className="text-gray-600">info@company.com</p>
                     <p className="text-gray-600">support@company.com</p>
                   </div>
@@ -63,10 +64,10 @@ export default function Contact() {
                     <span className="text-2xl">🕒</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-800">เวลาทำการ</h3>
-                    <p className="text-gray-600">จันทร์ - ศุกร์: 09:00 - 18:00</p>
-                    <p className="text-gray-600">เสาร์: 09:00 - 12:00</p>
-                    <p className="text-gray-600">อาทิตย์: ปิด</p>
+                    <h3 className="font-semibold text-gray-800">{t.contact.hoursTitle}</h3>
+                    <p className="text-gray-600">{t.contact.hours1}</p>
+                    <p className="text-gray-600">{t.contact.hours2}</p>
+                    <p className="text-gray-600">{t.contact.hours3}</p>
                   </div>
                 </div>
               </div>
@@ -74,7 +75,7 @@ export default function Contact() {
 
             {/* Social Media */}
             <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h2 className="text-2xl font-bold text-gray-800 mb-6">ติดตามเรา</h2>
+              <h2 className="text-2xl font-bold text-gray-800 mb-6">{t.contact.followTitle}</h2>
               <div className="flex space-x-4">
                 {/* facebook */}
                 <a href="#" className="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors">
